@@ -1,0 +1,16 @@
+{
+  "name": "opencode-remote-player",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Secure loopback web console for a local OpenCode instance",
+  "scripts": {
+    "smoke": "node scripts/smoke-test.mjs",
+    "test:real": "node scripts/e2e-real.mjs",
+    "install:plugin": "node scripts/install.mjs"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "1.19.3",
+    "@opencode-ai/sdk": "1.19.3"
+  }
+}

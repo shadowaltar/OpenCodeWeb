@@ -1,0 +1,265 @@
+:root {
+  color-scheme: dark;
+  --bg: #0e1116;
+  --panel: #161b22;
+  --panel-2: #1c2330;
+  --border: #2b3441;
+  --text: #e6edf3;
+  --muted: #8b98a8;
+  --accent: #3b82f6;
+  --accent-2: #2563eb;
+  --danger: #ef4444;
+  --ok: #22c55e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, #171d26, #12171f);
+}
+
+.brand {
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+.conn {
+  font-size: 12px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.conn.ok {
+  color: #bbf7d0;
+  border-color: #14532d;
+  background: #052e16;
+}
+
+.conn.bad {
+  color: #fecaca;
+  border-color: #7f1d1d;
+  background: #2a0a0a;
+}
+
+main {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "projects output"
+    "projects output"
+    "prompt prompt";
+  gap: 12px;
+  padding: 14px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.panel:nth-of-type(1) {
+  grid-area: projects;
+  align-self: start;
+}
+
+.panel:nth-of-type(2) {
+  grid-area: output;
+}
+
+.panel:nth-of-type(3) {
+  grid-area: prompt;
+}
+
+.panel.grow {
+  min-height: 0;
+}
+
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+textarea,
+select,
+input {
+  width: 100%;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 10px;
+  font: inherit;
+  outline: none;
+}
+
+textarea:focus,
+select:focus,
+input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.18);
+}
+
+textarea {
+  resize: none;
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+}
+
+#output {
+  flex: 1;
+  min-height: 160px;
+  white-space: pre-wrap;
+}
+
+#prompt {
+  min-height: 74px;
+  max-height: 240px;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-2);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button.stop {
+  background: var(--danger);
+}
+
+button.stop:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+#refresh {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+  padding: 5px 10px;
+  font-weight: 500;
+}
+
+#refresh:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--accent);
+  background: transparent;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.actions {
+  justify-content: flex-end;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--muted);
+  min-height: 16px;
+  overflow-wrap: anywhere;
+}
+
+.hint.bad {
+  color: #fca5a5;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 9, 13, 0.78);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  backdrop-filter: blur(3px);
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.auth-box {
+  width: min(420px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.auth-box h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.auth-box code {
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+@media (max-width: 860px) {
+  main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(220px, 1fr) auto;
+    grid-template-areas:
+      "projects"
+      "output"
+      "prompt";
+  }
+}

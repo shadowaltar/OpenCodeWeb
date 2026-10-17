@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenCode Remote Player</title>
+    <link rel="stylesheet" href="/app.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">OpenCode Remote Player</div>
+      <div id="conn" class="conn">connecting...</div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <div class="row">
+          <label for="project">Active project</label>
+          <button id="refresh" type="button">Refresh</button>
+        </div>
+        <select id="project"></select>
+        <div id="project-hint" class="hint"></div>
+      </section>
+
+      <section class="panel grow">
+        <label for="output">Output</label>
+        <textarea id="output" readonly spellcheck="false" placeholder="Model output appears here."></textarea>
+      </section>
+
+      <section class="panel">
+        <label for="prompt">Prompt</label>
+        <textarea id="prompt" spellcheck="false" placeholder="Type a message. Ctrl+Enter to send."></textarea>
+        <div class="row actions">
+          <span id="status" class="hint"></span>
+          <button id="send" type="button">Send</button>
+        </div>
+      </section>
+    </main>
+
+    <div id="auth" class="overlay hidden">
+      <form id="auth-form" class="auth-box">
+        <h1>Access token required</h1>
+        <p class="hint">
+          Paste the token from <code>runtime.json</code> or the OpenCode log.
+        </p>
+        <input id="token" type="password" autocomplete="off" placeholder="Token" />
+        <button type="submit">Connect</button>
+        <div id="auth-error" class="hint bad"></div>
+      </form>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
